@@ -1,8 +1,8 @@
 #! /bin/bash
 
 ../ffmpeg/ffmpeg -y -loglevel verbose \
-  -i 'udp://0.0.0.0:9000?overrun_nonfatal=1&buffer_size=81921024&fifo_size=178481' \
-  -i 'udp://0.0.0.0:9001?overrun_nonfatal=1&buffer_size=81921024&fifo_size=178481' \
+  -i 'udp://227.0.0.1:9000?overrun_nonfatal=1&buffer_size=81921024&fifo_size=178481' \
+  -i 'udp://227.0.0.2:9000?overrun_nonfatal=1&buffer_size=81921024&fifo_size=178481' \
   -loop 1 -i './bg.png' \
 -filter_complex "[1:1] asetpts=PTS-STARTPTS, channelmap=map=FL|FL [maina];
 [2:0] setpts=PTS-STARTPTS, scale=800:450 [pres];
