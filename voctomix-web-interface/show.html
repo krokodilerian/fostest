@@ -1,0 +1,21 @@
+<head><title>voctomix</title>
+</head>
+<body>
+<center>
+	<form method=GET target="tgt" action="/a.php" style="float: left;"><input hidden name="w" value="ss"><input type="submit" value="side-by-side"></form>
+	<form method=GET target="tgt" action="/a.php" style="float: left;"><input hidden name="w" value="ssp"><input type="submit" value="side-by-side preview"></form>
+	<form method=GET target="tgt" action="/a.php" style="float: left;"><input hidden name="w" value="fs"><input type="submit" value="fullscreen"></form>
+	<form method=GET target="tgt" action="/a.php" style="float: left;"><input hidden name="w" value="pip"><input type="submit" value="picture-in-picture"></form></p>
+</center>
+<center><img id="output" src="/output.png" width=640 height=360></center>
+
+<script>var img = document.getElementsByTagName('img')[0];var src=img.src;img.addEventListener('load', function() {setTimeout(function() {img.src=src+'?'+Date.now()}, 1000)})</script>
+<!-- <script>
+  	var d = new Date();
+    setInterval(function(){
+    	$("#output").attr("src", "/output.png?" + d.getTime());
+	},1000);
+  </script>
+-->
+<iframe name="tgt" id="target" width="0" height="0"></iframe>
+</body>
