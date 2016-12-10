@@ -1,12 +1,12 @@
 #! /bin/bash
 
-../ffmpeg/ffmpeg -y -loglevel verbose \
-  -i 'udp://227.0.0.1:9000?overrun_nonfatal=1&buffer_size=81921024&fifo_size=178481' \
-  -i 'udp://227.0.0.2:9000?overrun_nonfatal=1&buffer_size=81921024&fifo_size=178481' \
+~/ffmpeg/ffmpeg -y -loglevel verbose \
+  -i  /home/vasil/1-test.mp4 -map '0:v0' \
+  -i /home/vasil/1-test.mp4 -map '0:v1' \
   -loop 1 -i './bg.png' \
 -filter_complex "[1:1] asetpts=PTS-STARTPTS, channelmap=map=FL|FL [maina];
-[2:0] setpts=PTS-STARTPTS, scale=800:450 [pres];
-[1:0] setpts=PTS-STARTPTS, scale=544:306:force_original_aspect_ratio=1 [cam];
+[v0:0] setpts=PTS-STARTPTS, scale=800:450 [pres];
+[v1:0] setpts=PTS-STARTPTS, scale=544:306:force_original_aspect_ratio=1 [cam];
 [0:0] setsar=1/1, setpts=PTS-STARTPTS [bg];
 [bg_c][pres] overlay=x=16:y=16:eof_action=endall [bg_pc];
 [bg][cam] overlay=x=736:y=414:eof_action=endall [bg_c];
